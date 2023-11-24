@@ -4,6 +4,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $questionId = $_POST['questionId'];
   $guysQuesId = $_POST['guysQuesId'];
   $qualifyValue = $_POST['qualifyValue'];
+  
 
   require_once '../../../includes/conexion.php';
 

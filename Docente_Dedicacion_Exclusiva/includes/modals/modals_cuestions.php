@@ -1,4 +1,6 @@
 <?php
+    error_reporting(0); // Deshabilita temporalmente todas las advertencias y notificaciones
+
 session_start();
 require_once '../includes/conexion.php';
 
@@ -14,6 +16,7 @@ $stmt = $pdo_eva->prepare($sql);
 $stmt->bindValue(':idRole', $idRole, PDO::PARAM_INT);
 $stmt->execute();
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+error_reporting(E_ALL); // Restablece la configuración de errores a su valor original
 
 ?>
 

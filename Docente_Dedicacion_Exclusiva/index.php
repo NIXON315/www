@@ -21,19 +21,47 @@ $query_eva->execute();
 $consulta_eva = $query_eva->fetchAll(PDO::FETCH_ASSOC);
 $_SESSION['countusersEvadoc']=count($consulta_eva);
 
-$sql_Study = 'SELECT ide_estudiante FROM col_matricula WHERE cod_colegio_periodo IN(195,196) AND cod_estadomatricula = "3" GROUP BY ide_estudiante;';
+$sql_Study = 'SELECT  ID_ESTUDIANTE  FROM VISTA_EVADOCENTE  WHERE ID_DOCENTE = '.$_SESSION['User_UserName'].' GROUP BY ID_ESTUDIANTE';
 $query_sigeiesStudy = $pdo_sigeies->prepare($sql_Study);
 $query_sigeiesStudy->execute();
 
 $consulta_sigeiesStudy = $query_sigeiesStudy->fetchAll(PDO::FETCH_ASSOC);
 $_SESSION['countStudy']=count($consulta_sigeiesStudy);
 
-$sql_Teacher = 'SELECT ID_DOCENTE FROM CARGA_ACADEMICA_DOCENTE GROUP BY ID_DOCENTE;';
+$sql_Teacher = 'SELECT  ASIGNATURA  FROM VISTA_EVADOCENTE  WHERE ID_DOCENTE = '.$_SESSION['User_UserName'].' GROUP BY ASIGNATURA';
 $query_sigeiesTeacher = $pdo_sigeies->prepare($sql_Teacher);
 $query_sigeiesTeacher->execute();
 
 $consulta_sigeiesTeacher = $query_sigeiesTeacher->fetchAll(PDO::FETCH_ASSOC);
 $_SESSION['countTeacher']=count($consulta_sigeiesTeacher);
+
+
+
+
+$sql_UserName = 'SELECT
+      `EvaSys_AnswerEva`.`AnswerEva_IdRolEvaluator`
+    , `EvaSys_AnswerEva`.`AnswerEva_UserNameEvaluator`
+    , `EvaSys_AnswerEva`.`AnswerEva_QuesEvaId`
+    , `EvaSys_QuestionnaireEva`.`QuesEva_Name`
+FROM
+    `sistema-escolar`.`EvaSys_AnswerEva`
+    INNER JOIN `sistema-escolar`.`EvaSys_QuestionnaireEva` 
+        ON (`EvaSys_AnswerEva`.`AnswerEva_QuesEvaId` = `EvaSys_QuestionnaireEva`.`QuesEva_Id`) WHERE `EvaSys_AnswerEva`.`AnswerEva_UserNameEvaluator`= :username GROUP BY AnswerEva_UserNameEvaluator;';
+
+$query_sigeiesUserName = $pdo_eva->prepare($sql_UserName);
+$query_sigeiesUserName->bindParam(':username', $_SESSION['User_UserName']);
+$query_sigeiesUserName->execute();
+
+$consulta_sigeiesUserName = $query_sigeiesUserName->fetchAll(PDO::FETCH_ASSOC);
+
+if (count($consulta_sigeiesUserName) > 0) {
+    $_SESSION['QuesEvaName'] = ucwords(mb_strtolower($consulta_sigeiesUserName[0]['QuesEva_Name']));
+} else {
+    // Si no hay resultados, puedes asignar un valor por defecto o manejarlo según tus necesidades
+    $_SESSION['QuesEvaName'] = 'No hay nombre disponible';
+}
+$_SESSION['URL_Net'] = "";
+
 
 ?>
 
@@ -41,14 +69,14 @@ $_SESSION['countTeacher']=count($consulta_sigeiesTeacher);
       <div class="app-title">
         <div>
           <h1><i class="fa fa-dashboard"></i> Dashboard</h1>
-          <p>A free and open source Bootstrap 4 admin template</p>
+          <p>En esta seccion solo encontraras informacion de la evaluacion docente</p>
         </div>
         <ul class="app-breadcrumb breadcrumb">
           <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
           <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
         </ul>
       </div>
-      <div class="row">
+      <div class="row"><!--
         <div class="col-md-6 col-lg-3">
           <div class="widget-small primary coloured-icon"><i class="icon fa fa-users fa-3x"></i>
             <div class="info">
@@ -64,11 +92,11 @@ $_SESSION['countTeacher']=count($consulta_sigeiesTeacher);
               <p><b><?= $_SESSION['countusersEvadoc'] ?></b></p>
             </div>
           </div>
-        </div>
+        </div>-->
         <div class="col-md-6 col-lg-3">
           <div class="widget-small warning coloured-icon"><i class="icon fa fa-address-card fa-3x"></i>
             <div class="info">
-              <h4>Estudiantes</h4>
+              <h4>Alumnos</h4>
               <p><b><?= $_SESSION['countStudy'] ?></b></p>
             </div>
           </div>
@@ -76,12 +104,12 @@ $_SESSION['countTeacher']=count($consulta_sigeiesTeacher);
         <div class="col-md-6 col-lg-3">
           <div class="widget-small danger coloured-icon"><i class="icon fa fa-suitcase fa-3x"></i>
             <div class="info">
-              <h4>Docentes</h4>
+              <h4>Cursos</h4>
               <p><b><?= $_SESSION['countTeacher'] ?></b></p>
             </div>
           </div>
         </div>
-      </div>
+      </div><!--
       <div class="row">
         <div class="col-md-6">
           <div class="tile">
@@ -99,7 +127,7 @@ $_SESSION['countTeacher']=count($consulta_sigeiesTeacher);
             </div>
           </div>
         </div>
-      </div>
+      </div>-->
     </main>
     
 

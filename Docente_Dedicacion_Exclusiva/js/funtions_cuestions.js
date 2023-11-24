@@ -23,8 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 "aServerSide": true,
                 "data": data, // Puedes asignar directamente los datos de respuesta a la tabla DataTables
                 "columns": [
-                    {"data": "NameUser"},
-                    {"data": "AnswerEva_CourseName"},
+                    {"data": "QuestionStatement"},
                     {"data": "Qualify"},
                     {"data": "accion"}
                 ],
@@ -64,8 +63,19 @@ function openModalCuestions() {
 
 function saveAnswer(answerId, questionId, guysQuesId) {
     const qualifyField = document.getElementById('qualify_' + answerId);
-    const qualifyValue = parseFloat(qualifyField.value);
-  
+    console.log(guysQuesId);
+    let qualifyValue;
+    if (guysQuesId === 1) {
+      console.log("R1");
+
+      qualifyValue = parseFloat(qualifyField.value);
+    }else{
+      console.log("R2");
+
+      qualifyValue = qualifyField.value;
+    }
+    console.log(qualifyValue);
+
     if (guysQuesId === 1) {
       if (isNaN(qualifyValue) || qualifyValue < 0 || qualifyValue > 5) {
         alert('La calificación debe estar entre 0 y 5.');
@@ -75,9 +85,13 @@ function saveAnswer(answerId, questionId, guysQuesId) {
   
     // Desactiva el campo de entrada y el botón
     qualifyField.disabled = true;
-    const saveButton = document.querySelector('button[onclick="saveAnswer(' + answerId + ',' + questionId + ',' + guysQuesId + ')"]');
+    const saveButton = document.querySelector('button[onclick="saveAnswer(' + answerId + ',' + questionId + ',' + guysQuesId + ')"');
+    const naButton = document.querySelector('button[onclick="saveAnswerNA(' + answerId + ',' + questionId + ',' + guysQuesId + ')"');
     saveButton.disabled = true;
-  
+    if(naButton !== null){
+      naButton.disabled = true;
+    }
+
     // Envía los datos al servidor mediante una solicitud AJAX (usando jQuery en este ejemplo).
     $.ajax({
       type: 'POST',
@@ -97,7 +111,39 @@ function saveAnswer(answerId, questionId, guysQuesId) {
       },
     });
   }
+
+  function saveAnswerNA(answerId, questionId, guysQuesId) {
+    const qualifyField = document.getElementById('qualify_' + answerId);
   
+    // Enviar "NA" al servidor
+    const qualifyValue = "NA";
   
+    // Desactivar el campo de entrada
+    qualifyField.disabled = true;
   
+    // Desactivar el botón de guardar y el botón "No Aplica"
+    const saveButton = document.querySelector('button[onclick="saveAnswer(' + answerId + ',' + questionId + ',' + guysQuesId + ')"');
+    const naButton = document.querySelector('button[onclick="saveAnswerNA(' + answerId + ',' + questionId + ',' + guysQuesId + ')"');
+    saveButton.disabled = true;
+    naButton.disabled = true;
+  
+    // Envía los datos al servidor mediante una solicitud AJAX (usando jQuery en este ejemplo).
+    $.ajax({
+      type: 'POST',
+      url: './models/cuestions/AjaxSaveAnswerNA.php',
+      data: {
+        answerId: answerId,
+        questionId: questionId,
+        guysQuesId: guysQuesId,
+        qualifyValue: qualifyValue,
+      },
+      success: function (response) {
+        // Manejar la respuesta del servidor si es necesario
+      },
+      error: function (error) {
+        // Manejar errores si es necesario
+        console.error(error);
+      },
+    });
+  }
   

@@ -152,6 +152,94 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 break;
             
             case 4:
+                $sqlViewsEva = 'SELECT User_UserName, User_Name FROM EvaSys_Users  WHERE User_IdRole = ?';
+                $queryViewsEva = $pdo_eva->prepare($sqlViewsEva);
+                $queryViewsEva->execute([$idQuesEvaidRolEvaluator]);
+                $consultaViewsEva = $queryViewsEva->fetchAll(PDO::FETCH_ASSOC);
+                for($i = 0; $i < count($consultaViewsEva);$i++){
+                    $sql = 'SELECT
+                    `EvaSys_GroupCatQues`.`GroupCatQues_Id`,
+                    `EvaSys_ConfigQuestionnaire`.`ConfigQuestionnaire_Id`,
+                    `EvaSys_ConfigQuestionnaire`.`ConfigQuestionnaire_Name`,
+                    `EvaSys_CategoriOfQuestions`.`CatOfQues_Id`,
+                    `EvaSys_CategoriOfQuestions`.`CatOfQues_Name`,
+                    `EvaSys_Questions`.`Questions_Id`,
+                    `EvaSys_Questions`.`Questions_Name`,
+                    `EvaSys_Questions`.`Questions_Statement`,
+                    `EvaSys_ConfigQuestionnaire`.`ConfigQuestionnaire_IdRolEvaluator`,
+                    `EvaSys_ConfigQuestionnaire`.`ConfigQuestionnaire_IdRolEvaluated`,
+                    `EvaSys_GuysQues`.`GuysQues_Id`
+                    FROM
+                    `sistema-escolar`.`EvaSys_GroupCatQues`
+                    INNER JOIN `sistema-escolar`.`EvaSys_ConfigQuestionnaire`
+                        ON (
+                        `EvaSys_GroupCatQues`.`ConfigQuestionnaire_Id` = `EvaSys_ConfigQuestionnaire`.`ConfigQuestionnaire_Id`
+                        )
+                    INNER JOIN `sistema-escolar`.`EvaSys_CategoriOfQuestions`
+                        ON (
+                        `EvaSys_GroupCatQues`.`CatOfQues_Id` = `EvaSys_CategoriOfQuestions`.`CatOfQues_Id`
+                        )
+                    INNER JOIN `sistema-escolar`.`EvaSys_Questions`
+                        ON (
+                        `EvaSys_GroupCatQues`.`Questions_Ids` = `EvaSys_Questions`.`Questions_Id`
+                        )
+                    INNER JOIN `sistema-escolar`.`EvaSys_GuysQues`
+                        ON (
+                        `EvaSys_Questions`.`Questions_GuysId` = `EvaSys_GuysQues`.`GuysQues_Id`
+                        ) WHERE  `EvaSys_ConfigQuestionnaire`.`ConfigQuestionnaire_Id` = ?';
+
+                    $query = $pdo_eva->prepare($sql);
+                    $query->execute([$idQuesEvaConfigQuestionnaire]);
+                    $consulta = $query->fetchAll(PDO::FETCH_ASSOC);
+
+                    for($j = 0; $j < count($consulta);$j++){
+                        if ($consulta[$j]['ConfigQuestionnaire_IdRolEvaluator'] == "4"){
+                            $evaluator = $consultaViewsEva[$i]['User_UserName'];
+                        }
+
+                        if ($consulta[$j]['ConfigQuestionnaire_IdRolEvaluated'] == "4"){
+                            $evaluated = $consultaViewsEva[$i]['User_UserName'];
+                        }
+
+                        $sqlInsert    = 'INSERT INTO EvaSys_AnswerEva (
+                            AnswerEva_IdRolEvaluator, 
+                            AnswerEva_UserNameEvaluator, 
+                            AnswerEva_IdRolEvaluated, 
+                            AnswerEva_UserNameEvaluated, 
+                            AnswerEva_IdPeriod, 
+                            AnswerEva_QuesEvaId, 
+                            AnswerEva_CatOfQues_Id, 
+                            AnswerEva_QuestionId, 
+                            AnswerEva_GuysQuesId, 
+                            AnswerEva_QualifyNum, 
+                            AnswerEva_QualifyText, 
+                            AnswerEva_IdCourse, 
+                            AnswerEva_CourseName, 
+                            AnswerEva_Campus, 
+                            AnswerEva_Faculty, 
+                            AnswerEva_StatusId ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+                        $queryInsert  = $pdo_eva->prepare($sqlInsert);
+                        $request = $queryInsert->execute(array(
+                            $consulta[$j]['ConfigQuestionnaire_IdRolEvaluator'],
+                            $evaluator,
+                            $consulta[$j]['ConfigQuestionnaire_IdRolEvaluated'],
+                            $evaluated,
+                            $idQuesEvaidPeriodo,
+                            $idQuestionsEva,
+                            $consulta[$j]['CatOfQues_Id'],
+                            $consulta[$j]['Questions_Id'],
+                            $consulta[$j]['GuysQues_Id'],
+                            null,
+                            null,
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "1"
+                        ));
+                        $accion = 1;
+                    }
+                }
 
                 break;
             
@@ -246,7 +334,95 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
                 break;
             
-            case 6:
+            case 7:
+                $sqlViewsEva = 'SELECT User_UserName, User_Name FROM EvaSys_Users  WHERE User_IdRole = ?';
+                $queryViewsEva = $pdo_eva->prepare($sqlViewsEva);
+                $queryViewsEva->execute([$idQuesEvaidRolEvaluator]);
+                $consultaViewsEva = $queryViewsEva->fetchAll(PDO::FETCH_ASSOC);
+                for($i = 0; $i < count($consultaViewsEva);$i++){
+                    $sql = 'SELECT
+                    `EvaSys_GroupCatQues`.`GroupCatQues_Id`,
+                    `EvaSys_ConfigQuestionnaire`.`ConfigQuestionnaire_Id`,
+                    `EvaSys_ConfigQuestionnaire`.`ConfigQuestionnaire_Name`,
+                    `EvaSys_CategoriOfQuestions`.`CatOfQues_Id`,
+                    `EvaSys_CategoriOfQuestions`.`CatOfQues_Name`,
+                    `EvaSys_Questions`.`Questions_Id`,
+                    `EvaSys_Questions`.`Questions_Name`,
+                    `EvaSys_Questions`.`Questions_Statement`,
+                    `EvaSys_ConfigQuestionnaire`.`ConfigQuestionnaire_IdRolEvaluator`,
+                    `EvaSys_ConfigQuestionnaire`.`ConfigQuestionnaire_IdRolEvaluated`,
+                    `EvaSys_GuysQues`.`GuysQues_Id`
+                    FROM
+                    `sistema-escolar`.`EvaSys_GroupCatQues`
+                    INNER JOIN `sistema-escolar`.`EvaSys_ConfigQuestionnaire`
+                        ON (
+                        `EvaSys_GroupCatQues`.`ConfigQuestionnaire_Id` = `EvaSys_ConfigQuestionnaire`.`ConfigQuestionnaire_Id`
+                        )
+                    INNER JOIN `sistema-escolar`.`EvaSys_CategoriOfQuestions`
+                        ON (
+                        `EvaSys_GroupCatQues`.`CatOfQues_Id` = `EvaSys_CategoriOfQuestions`.`CatOfQues_Id`
+                        )
+                    INNER JOIN `sistema-escolar`.`EvaSys_Questions`
+                        ON (
+                        `EvaSys_GroupCatQues`.`Questions_Ids` = `EvaSys_Questions`.`Questions_Id`
+                        )
+                    INNER JOIN `sistema-escolar`.`EvaSys_GuysQues`
+                        ON (
+                        `EvaSys_Questions`.`Questions_GuysId` = `EvaSys_GuysQues`.`GuysQues_Id`
+                        ) WHERE  `EvaSys_ConfigQuestionnaire`.`ConfigQuestionnaire_Id` = ?';
+
+                    $query = $pdo_eva->prepare($sql);
+                    $query->execute([$idQuesEvaConfigQuestionnaire]);
+                    $consulta = $query->fetchAll(PDO::FETCH_ASSOC);
+
+                    for($j = 0; $j < count($consulta);$j++){
+                        if ($consulta[$j]['ConfigQuestionnaire_IdRolEvaluator'] == "7"){
+                            $evaluator = $consultaViewsEva[$i]['User_UserName'];
+                        }
+
+                        if ($consulta[$j]['ConfigQuestionnaire_IdRolEvaluated'] == "7"){
+                            $evaluated = $consultaViewsEva[$i]['User_UserName'];
+                        }
+
+                        $sqlInsert    = 'INSERT INTO EvaSys_AnswerEva (
+                            AnswerEva_IdRolEvaluator, 
+                            AnswerEva_UserNameEvaluator, 
+                            AnswerEva_IdRolEvaluated, 
+                            AnswerEva_UserNameEvaluated, 
+                            AnswerEva_IdPeriod, 
+                            AnswerEva_QuesEvaId, 
+                            AnswerEva_CatOfQues_Id, 
+                            AnswerEva_QuestionId, 
+                            AnswerEva_GuysQuesId, 
+                            AnswerEva_QualifyNum, 
+                            AnswerEva_QualifyText, 
+                            AnswerEva_IdCourse, 
+                            AnswerEva_CourseName, 
+                            AnswerEva_Campus, 
+                            AnswerEva_Faculty, 
+                            AnswerEva_StatusId ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+                        $queryInsert  = $pdo_eva->prepare($sqlInsert);
+                        $request = $queryInsert->execute(array(
+                            $consulta[$j]['ConfigQuestionnaire_IdRolEvaluator'],
+                            $evaluator,
+                            $consulta[$j]['ConfigQuestionnaire_IdRolEvaluated'],
+                            $evaluated,
+                            $idQuesEvaidPeriodo,
+                            $idQuestionsEva,
+                            $consulta[$j]['CatOfQues_Id'],
+                            $consulta[$j]['Questions_Id'],
+                            $consulta[$j]['GuysQues_Id'],
+                            null,
+                            null,
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "1"
+                        ));
+                        $accion = 1;
+                    }
+                }
 
                 break;
         
