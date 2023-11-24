@@ -3,10 +3,10 @@
         error_reporting(0); // Deshabilita temporalmente todas las advertencias y notificaciones
 
       include '../../includes/conexion.php';
+      error_reporting(E_ALL); // Restablece la configuración de errores a su valor original
 
       //include '../../includes/conexion';
       require_once './includes/modals/modals_cuestions.php';
-      error_reporting(E_ALL); // Restablece la configuración de errores a su valor original
 
     ?>
     <!--<button type="button" class="btn btn-success" type="button" onclick="openModal()">Nuevo Usuarios</button>-->

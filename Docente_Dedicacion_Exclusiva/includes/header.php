@@ -103,6 +103,4 @@
     </header>
     <?php
       require_once 'nav.php';
-      error_reporting(E_ALL); // Restablece la configuración de errores a su valor original
-
     ?>

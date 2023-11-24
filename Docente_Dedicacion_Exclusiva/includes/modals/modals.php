@@ -1,6 +1,4 @@
 <?php
-        error_reporting(0); // Deshabilita temporalmente todas las advertencias y notificaciones
-
 require_once '../includes/conexion.php';
 
 // Obtener los roles de la base de datos
@@ -9,8 +7,6 @@ require_once '../includes/conexion.php';
 $sqlRoles = 'SELECT * FROM EvaSys_Role';
 $queryRoles = $pdo_eva->query($sqlRoles);
 $roles = $queryRoles->fetchAll(PDO::FETCH_ASSOC);
-error_reporting(E_ALL); // Restablece la configuración de errores a su valor original
-
 ?>
 
 <div class="modal fade" id="modalUser" tabindex="-1" role="dialog" role="dialog" aria-hidden="true">
