@@ -6,19 +6,18 @@
     $pass = 'Phz3bzGa@B';
     $db   = 'sigedin_seguridad';
     $port = '3306';
-
+    
     $host_eva = '192.168.0.105';
     $user_eva = 'DevOps';
     $pass_eva = 'Phz3bzGa@B';
     $db_eva   = 'sistema-escolar';
     $port_eva = '3306';
-
+    
     $host_sigeies = '192.168.0.105';
     $user_sigeies = 'DevOps';
     $pass_sigeies = 'Phz3bzGa@B';
     $db_sigeies   = 'sigedin_ies';
     $port_sigeies = '3306';
-
     
 
 try {
