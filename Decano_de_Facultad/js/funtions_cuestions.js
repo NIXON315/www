@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 "data": data, // Puedes asignar directamente los datos de respuesta a la tabla DataTables
                 "columns": [
                     {"data": "NameUser"},
+                    {"data": "AnswerEva_Campus"},
                     {"data": "Qualify"},
                     {"data": "accion"}
                 ],

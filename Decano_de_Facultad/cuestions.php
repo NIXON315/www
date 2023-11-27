@@ -17,13 +17,32 @@ $contador = 1;
 
         $evaluated = $idAssignGroupCatQuest;
 
-        $sqlCheckExists = 'SELECT * FROM EvaSys_ConfigQuestionnaire WHERE ConfigQuestionnaire_Id = ?';
+        $sqlCheckExists = 'SELECT
+        `EvaSys_ConfigQuestionnaire`.`ConfigQuestionnaire_Id`
+        , `EvaSys_ConfigQuestionnaire`.`ConfigQuestionnaire_Name`
+        , `EvaSys_ConfigQuestionnaire`.`ConfigQuestionnaire_IdRolEvaluator`
+        , `EvaSys_ConfigQuestionnaire`.`ConfigQuestionnaire_IdRolEvaluated`
+        , `EvaSys_ConfigQuestionnaire`.`ConfigQuestionnaire_UserNameCreation`
+        , `EvaSys_ConfigQuestionnaire`.`ConfigQuestionnaire_StatusId`
+        , `EvaSys_ConfigQuestionnaire`.`ConfigQuestionnaire_DateCreation`
+        , `EvaSys_ConfigQuestionnaire`.`ConfigQuestionnaire_TimeCreation`
+        , `EvaSys_ConfigQuestionnaire`.`ConfigQuestionnaire_UserNameModify`
+        , `EvaSys_ConfigQuestionnaire`.`ConfigQuestionnaire_DateModify`
+        , `EvaSys_ConfigQuestionnaire`.`ConfigQuestionnaire_TimeModify`
+        , `EvaSys_QuestionnaireEva`.`QuesEva_Id`
+        , `EvaSys_QuestionnaireEva`.`QuesEva_Name`
+    FROM
+        `sistema-escolar`.`EvaSys_QuestionnaireEva`
+        INNER JOIN `sistema-escolar`.`EvaSys_ConfigQuestionnaire` 
+            ON (`EvaSys_QuestionnaireEva`.`QuesEva_ConfigQuestionnaireId` = `EvaSys_ConfigQuestionnaire`.`ConfigQuestionnaire_Id`)  WHERE ConfigQuestionnaire_Id = ?';
         $queryCheckExists = $pdo_eva->prepare($sqlCheckExists);
         $queryCheckExists->execute([
             $evaluated
         ]);
         $firstRow = $queryCheckExists->fetch(PDO::FETCH_ASSOC);
         $nombreCuestionario = $firstRow['ConfigQuestionnaire_Name'];
+        $idCuestionario = $firstRow['QuesEva_Id'];
+
 
         //$evaluated = $consultaViewsEva[$i]['ID_DOCENTE'];
         $sqlCheckExistss = '  SELECT
@@ -116,36 +135,42 @@ error_reporting(E_ALL); // Restablece la configuración de errores a su valor or
   <div class="row">
     <div class="col-md-12">
       <div class="tile">
-        <h3 class="tile-title"><?php echo $categoriQues['CatOfQues_Name']; ?></h3>
+        <h3 class="tile-title"><?php echo $categoriQues['CatOfQues_Name'];  ?></h3>
         
         <?php
+//       AnswerEva_QuesEvaId = "'.$idCuestionario.'"
 
           $sql = '    SELECT
           `EvaSys_AnswerEva`.`AnswerEva_QuestionId`,
           `EvaSys_Questions`.`Questions_Name`,
           `EvaSys_Questions`.`Questions_Statement`,
           `EvaSys_AnswerEva`.`AnswerEva_IdRolEvaluator`,
+          `EvaSys_AnswerEva`.`AnswerEva_QuesEvaId`,
+
           `EvaSys_AnswerEva`.`AnswerEva_CatOfQues_Id`
         FROM
           `sistema-escolar`.`EvaSys_AnswerEva`
           INNER JOIN `sistema-escolar`.`EvaSys_Questions`
             ON (
               `EvaSys_AnswerEva`.`AnswerEva_QuestionId` = `EvaSys_Questions`.`Questions_Id`
-            )WHERE AnswerEva_UserNameEvaluator = "'.$idEvaluator .'" AND AnswerEva_CatOfQues_Id = "'.$categoriQues['CatOfQues_Id'].'" GROUP BY AnswerEva_QuestionId ASC';
+            )WHERE AnswerEva_UserNameEvaluator = "'.$idEvaluator .'" AND AnswerEva_CatOfQues_Id = "'.$categoriQues['CatOfQues_Id'].'"  AND AnswerEva_QuesEvaId = "'.$idCuestionario.'" GROUP BY AnswerEva_QuestionId ASC';
 
           $query = $pdo_eva->query($sql);
           $Questions = $query->fetchAll(PDO::FETCH_ASSOC);
           foreach ($Questions as $QuestionsTable):
+
             $cont = $contador++;
             $_SESSION['QuestionsIdGnerate'] =$QuestionsTable['AnswerEva_QuestionId'];
             $IdQuestions =$QuestionsTable['AnswerEva_QuestionId'];
+
         ?>
 
         <table class="table tabla-categoria" id="tableQuestionsAnswer_<?php echo $cont ?>" data-questionid="<?php echo $IdQuestions; ?>">
           <p><h5><?php echo "Pregunta ".$cont.":"; ?></h5><?php echo $QuestionsTable['Questions_Statement']; ?></p>
           <thead>
             <tr>
-              <th style="inline-size: 60%;">Nombre del docente</th>
+              <th style="inline-size: 53%;">Nombre del docente</th>
+              <th style="inline-size: 20%;">Sede</th>
               <th style="inline-size: 12%;">Calificación</th>
               <th style="inline-size: 15%;">Guardar</th>
             </tr>
