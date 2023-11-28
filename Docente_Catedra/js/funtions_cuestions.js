@@ -71,8 +71,15 @@ function saveAnswer(answerId, questionId, guysQuesId) {
       qualifyValue = parseFloat(qualifyField.value);
     }else{
       console.log("R2");
+      qualifyTextArea = qualifyField.value;
 
-      qualifyValue = qualifyField.value;
+      if(qualifyTextArea !== "" ){
+        qualifyValue = qualifyField.value;
+
+      }else {
+        qualifyValue= "NaN";
+      }
+
     }
     console.log(qualifyValue);
 
