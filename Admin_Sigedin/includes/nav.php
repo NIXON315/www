@@ -22,7 +22,7 @@
       </div>
       <ul class="app-menu">
         <li><a class="app-menu__item" href="dashboard.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
-        <li><a class="app-menu__item" href="#" onclick="openModalCuestions()"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Evaluaciones</span></a></li>
+        <!--<li><a class="app-menu__item" href="#" onclick="openModalCuestions()"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Evaluaciones</span></a></li>
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">Informes-Reportes</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
             <li><a class="treeview-item" href="form-components.html"><i class="icon fa fa-circle-o"></i> Informe Docentes</a></li>
@@ -38,7 +38,7 @@
             <li><a class="treeview-item" href="form-samples.html"><i class="icon fa fa-circle-o"></i> Informe Resultados Cualitativos u Observaciones(Docentes)</a></li>
 
           </ul>
-        </li>
+        </li>-->
 
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">Gestión</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
@@ -59,7 +59,7 @@
         </li>
    
         
-        <li><a class="app-menu__item" href="docs.html"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Docs</span></a></li>
+        <!--<li><a class="app-menu__item" href="docs.html"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Docs</span></a></li>-->
         <li><a class="app-menu__item" href="../logout.php"><i class="app-menu__icon fa fa-sign-out fa-lg"></i></i><span class="app-menu__label"> Cerrar Sesión</span></a></li>
       </ul>
     </aside>
