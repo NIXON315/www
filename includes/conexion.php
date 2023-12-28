@@ -1,22 +1,24 @@
 <?php
+    error_reporting(0); // Deshabilita temporalmente todas las advertencias y notificaciones
 
-$host = '192.168.0.105';
-$user = 'DevOps';
-$pass = 'Phz3bzGa@B';
-$db   = 'sigedin_seguridad';
-$port = '3306';
-
-$host_eva = '192.168.0.105';
-$user_eva = 'DevOps';
-$pass_eva = 'Phz3bzGa@B';
-$db_eva   = 'sistema-escolar';
-$port_eva = '3306';
-
-$host_sigeies = '192.168.0.105';
-$user_sigeies = 'DevOps';
-$pass_sigeies = 'Phz3bzGa@B';
-$db_sigeies   = 'sigedin_ies';
-$port_sigeies = '3306';
+    $host = '10.10.13.13';
+    $user = 'dvn';
+    $pass = 'duvan07+';
+    $db   = 'sigedin_seguridad';
+    $port = '3306';
+    
+    $host_eva = '10.10.13.13';
+    $user_eva = 'dvn';
+    $pass_eva = 'duvan07+';
+    $db_eva   = 'sistema-escolar';
+    $port_eva = '3306';
+    
+    $host_sigeies = '10.10.13.13';
+    $user_sigeies = 'dvn';
+    $pass_sigeies = 'duvan07+';
+    $db_sigeies   = 'sigedin_ies';
+    $port_sigeies = '3306';
+    
 
 try {
     $pdo = new PDO('mysql:host='.$host.';port='.$port.';dbname='.$db.';charset=utf8', $user, $pass, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
@@ -33,4 +35,6 @@ try {
     echo 'Error: '.$e->getMessage();
     
 }
+error_reporting(E_ALL); // Restablece la configuración de errores a su valor original
+
 ?>
