@@ -4,10 +4,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $questionId = $_POST['questionId'];
   $guysQuesId = $_POST['guysQuesId'];
   $qualifyValue = $_POST['qualifyValue'];
-  error_reporting(0); // Deshabilita temporalmente todas las advertencias y notificaciones
 
   require_once '../../../includes/conexion.php';
-  error_reporting(E_ALL); // Restablece la configuración de errores a su valor original
 
   // Verificar el valor de guysQuesId y realizar la actualización correspondiente
   if ($guysQuesId == 1) {

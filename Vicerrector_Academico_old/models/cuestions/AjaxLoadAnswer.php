@@ -1,9 +1,7 @@
 <?php
 session_start();
-error_reporting(0); // Deshabilita temporalmente todas las advertencias y notificaciones
 
 require_once '../../../includes/conexion.php';
-error_reporting(E_ALL); // Restablece la configuración de errores a su valor original
 
 // Verificar si se recibieron datos POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

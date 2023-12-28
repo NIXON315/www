@@ -1,9 +1,6 @@
 <?php
-      error_reporting(0); // Deshabilita temporalmente todas las advertencias y notificaciones
-
 require_once 'includes/header.php';
 require_once '../includes/conexion.php';
-error_reporting(E_ALL); // Restablece la configuración de errores a su valor original
 
 $sql = 'SELECT User_Id, User_Name, User_UserName, User_Password, User_Email, User_IdRole, Role_Name, User_StatusId
 FROM EvaSys_Users

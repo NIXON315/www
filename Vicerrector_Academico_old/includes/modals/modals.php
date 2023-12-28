@@ -1,8 +1,5 @@
 <?php
-      error_reporting(0); // Deshabilita temporalmente todas las advertencias y notificaciones
-
 require_once '../includes/conexion.php';
-error_reporting(E_ALL); // Restablece la configuración de errores a su valor original
 
 // Obtener los roles de la base de datos
 //$sqlRoles = 'SELECT rol_id, nombre_rol FROM rol';

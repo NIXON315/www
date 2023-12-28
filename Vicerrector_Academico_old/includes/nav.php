@@ -1,12 +1,8 @@
     <!-- Sidebar menu-->
     <?php
-      error_reporting(0); // Deshabilita temporalmente todas las advertencias y notificaciones
-
       include '../../includes/conexion.php';
       include '../../includes/conexion';
       require_once './includes/modals/modals_cuestions.php';
-      error_reporting(E_ALL); // Restablece la configuración de errores a su valor original
-
 
     ?>
     <!--<button type="button" class="btn btn-success" type="button" onclick="openModal()">Nuevo Usuarios</button>-->
@@ -56,10 +52,10 @@
             <li><a class="treeview-item" href="users_sigeitp.php"><i class="icon fa fa-circle-o"></i>Usuarios Sigedin</a></li>
             <li><a class="treeview-item" href="users_evadoc.php"><i class="icon fa fa-circle-o"></i> Usuarios Eva-Docente</a></li>
           </ul>
-        </li>
+        </li>-->  
    
         
-        <li><a class="app-menu__item" href="docs.html"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Docs</span></a></li>-->  
+        <li><a class="app-menu__item" href="docs.html"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Docs</span></a></li>
         <li><a class="app-menu__item" href="../logout.php"><i class="app-menu__icon fa fa-sign-out fa-lg"></i></i><span class="app-menu__label"> Cerrar Sesión</span></a></li>
       </ul>
     </aside>

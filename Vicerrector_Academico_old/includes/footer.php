@@ -14,10 +14,10 @@
         <!-- Data table plugin-->
     <script type="text/javascript" src="../js/plugins/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="../js/plugins/dataTables.bootstrap.min.js"></script>
-    <!--<script type="text/javascript" src="js/funtions_users_sigeitp.js"></script>
-    <script type="text/javascript" src="js/funtions_users_evadoc.js"></script>-->
+    <script type="text/javascript" src="js/funtions_users_sigeitp.js"></script>
+    <script type="text/javascript" src="js/funtions_users_evadoc.js"></script>
     <script type="text/javascript" src="js/funtions_cuestions.js"></script>
-<!--	<script type="text/javascript" src="js/FuntionsManageQuestions.js"></script>
+	<script type="text/javascript" src="js/FuntionsManageQuestions.js"></script>
 	<script type="text/javascript" src="js/FuntionsConfigQuestionnaire.js"></script>
 	<script type="text/javascript" src="js/FuntionsBankQuestion.js"></script>
 	<script type="text/javascript" src="js/FuntionsConfigGuysQues.js"></script>
@@ -26,7 +26,7 @@
 	<script type="text/javascript" src="js/FuntionsConfigAssignGroupCatQues.js"></script>
 	<script type="text/javascript" src="js/FuntionsConfigGroupCatQues.js"></script>
 	<script type="text/javascript" src="js/FuntionsConfigQuestionForCategori.js"></script>
-	<script type="text/javascript" src="js/FuntionsConfigAssignQuestions.js"></script>-->
+	<script type="text/javascript" src="js/FuntionsConfigAssignQuestions.js"></script>
 
 
 
@@ -94,4 +94,3 @@
     </script>-->
   </body>
 </html>
-
