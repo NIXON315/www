@@ -7,7 +7,7 @@ require_once '../includes/conexion.php';
 $NotasFinales = array();
 
 // Query 1
-$query1 = "SELECT `AnswerEva_UserNameEvaluated`, `AnswerEva_IdPeriod` FROM `sistema-escolar`.`EvaSys_AnswerEva` WHERE `AnswerEva_IdPeriod` ='43' GROUP BY `AnswerEva_UserNameEvaluated`;";
+$query1 = "SELECT `AnswerEva_UserNameEvaluated`, `AnswerEva_IdPeriod` FROM `sistema-escolar`.`EvaSys_AnswerEva` WHERE `AnswerEva_IdPeriod` ='44' GROUP BY `AnswerEva_UserNameEvaluated`;";
 $result1 = $pdo_eva->query($query1);
 
 while ($row1 = $result1->fetch(PDO::FETCH_ASSOC)) {
@@ -44,7 +44,7 @@ while ($row1 = $result1->fetch(PDO::FETCH_ASSOC)) {
     FROM
         `sistema-escolar`.`EvaSys_AnswerEva`
     INNER JOIN `sistema-escolar`.`EvaSys_Users` 
-        ON (`EvaSys_AnswerEva`.`AnswerEva_UserNameEvaluated` = `EvaSys_Users`.`User_UserName`) WHERE `AnswerEva_UserNameEvaluated` = '$UserNameEvaluated' and `AnswerEva_IdPeriod` ='43' GROUP BY `AnswerEva_UserNameEvaluator`, `AnswerEva_IdCourse`, `AnswerEva_QuesEvaId`";
+        ON (`EvaSys_AnswerEva`.`AnswerEva_UserNameEvaluated` = `EvaSys_Users`.`User_UserName`) WHERE `AnswerEva_UserNameEvaluated` = '$UserNameEvaluated' and `AnswerEva_IdPeriod` ='44' GROUP BY `AnswerEva_UserNameEvaluator`, `AnswerEva_IdCourse`, `AnswerEva_QuesEvaId`";
     $result2 = $pdo_eva->query($query2);
 
     while ($row2 = $result2->fetch(PDO::FETCH_ASSOC)) {
@@ -69,7 +69,7 @@ while ($row1 = $result1->fetch(PDO::FETCH_ASSOC)) {
             , `AnswerEva_QualifyText`
             , `AnswerEva_QuesEvaId`
         FROM
-            `sistema-escolar`.`EvaSys_AnswerEva` WHERE  `AnswerEva_UserNameEvaluated` = '$UserNameEvaluated' AND `AnswerEva_UserNameEvaluator` = '$UserNameEvaluator' AND `AnswerEva_GuysQuesId` ='3' AND `AnswerEva_IdPeriod` ='43' AND `AnswerEva_QuesEvaId` = $QuesEvaId  AND `AnswerEva_QualifyText` IS NOT NULL AND `AnswerEva_QualifyText` NOT IN ('', 'NULL', 'NaN');";
+            `sistema-escolar`.`EvaSys_AnswerEva` WHERE  `AnswerEva_UserNameEvaluated` = '$UserNameEvaluated' AND `AnswerEva_UserNameEvaluator` = '$UserNameEvaluator' AND `AnswerEva_GuysQuesId` ='3' AND `AnswerEva_IdPeriod` ='44' AND `AnswerEva_QuesEvaId` = $QuesEvaId  AND `AnswerEva_QualifyText` IS NOT NULL AND `AnswerEva_QualifyText` NOT IN ('', 'NULL', 'NaN');";
         $result3 = $pdo_eva->query($query3);
 
         while ($row3 = $result3->fetch(PDO::FETCH_ASSOC)) {

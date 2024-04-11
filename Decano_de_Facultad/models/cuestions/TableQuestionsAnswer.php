@@ -7,7 +7,7 @@ error_reporting(E_ALL); // Restablece la configuración de errores a su valor or
 
 $variableRecibida = json_decode(file_get_contents('php://input'), true);
 $questionId = $variableRecibida['questionId'];
-$IdPeriod = '43';
+$IdPeriod = '44';
 $UserNameEvaluator = $_SESSION['User_UserName'];
 
 $idAssignGroupCatQuest = $_SESSION['idAssignGroupCatQuest'];

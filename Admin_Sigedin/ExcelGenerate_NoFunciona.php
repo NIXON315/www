@@ -10,7 +10,7 @@ $NotaFinalDecanoCompromisoInstitucional = array();
 $NotaFinalAutoEvaluacion = array();
 
 // Query 1
-$query1 = "SELECT `AnswerEva_UserNameEvaluated`, `AnswerEva_IdPeriod` FROM `sistema-escolar`.`EvaSys_AnswerEva` WHERE `AnswerEva_IdPeriod` ='43' GROUP BY `AnswerEva_UserNameEvaluated`;";
+$query1 = "SELECT `AnswerEva_UserNameEvaluated`, `AnswerEva_IdPeriod` FROM `sistema-escolar`.`EvaSys_AnswerEva` WHERE `AnswerEva_IdPeriod` ='44' GROUP BY `AnswerEva_UserNameEvaluated`;";
 $result1 = $pdo_eva->query($query1);
 
 while ($row1 = $result1->fetch(PDO::FETCH_ASSOC)) {
@@ -20,7 +20,7 @@ while ($row1 = $result1->fetch(PDO::FETCH_ASSOC)) {
     $contador1 = 0;
 
     // Query 2
-    $query2 = "SELECT `AnswerEva_Id`, `AnswerEva_UserNameEvaluated`, `AnswerEva_UserNameEvaluator`, `AnswerEva_IdPeriod`, `AnswerEva_IdCourse`, `AnswerEva_QuesEvaId` FROM `sistema-escolar`.`EvaSys_AnswerEva` WHERE `AnswerEva_UserNameEvaluated` = '$UserNameEvaluated' and `AnswerEva_IdPeriod` ='43' GROUP BY `AnswerEva_UserNameEvaluator`, `AnswerEva_IdCourse`, `AnswerEva_QuesEvaId`";
+    $query2 = "SELECT `AnswerEva_Id`, `AnswerEva_UserNameEvaluated`, `AnswerEva_UserNameEvaluator`, `AnswerEva_IdPeriod`, `AnswerEva_IdCourse`, `AnswerEva_QuesEvaId` FROM `sistema-escolar`.`EvaSys_AnswerEva` WHERE `AnswerEva_UserNameEvaluated` = '$UserNameEvaluated' and `AnswerEva_IdPeriod` ='44' GROUP BY `AnswerEva_UserNameEvaluator`, `AnswerEva_IdCourse`, `AnswerEva_QuesEvaId`";
     $result2 = $pdo_eva->query($query2);
 
     while ($row2 = $result2->fetch(PDO::FETCH_ASSOC)) {
@@ -32,7 +32,7 @@ while ($row1 = $result1->fetch(PDO::FETCH_ASSOC)) {
         $promedioPorEvaluador = array();
 
         // Query 3
-        $query3 = "SELECT `AnswerEva_Id`, `AnswerEva_IdRolEvaluator`, `AnswerEva_UserNameEvaluator`, `AnswerEva_IdRolEvaluated`, `AnswerEva_UserNameEvaluated`, `AnswerEva_IdPeriod`, `AnswerEva_IdCourse`, `AnswerEva_CourseName`, `AnswerEva_GuysQuesId`, `AnswerEva_QualifyNum` FROM `sistema-escolar`.`EvaSys_AnswerEva` WHERE `AnswerEva_UserNameEvaluated` = '$UserNameEvaluated' AND `AnswerEva_UserNameEvaluator` = '$UserNameEvaluator' AND `AnswerEva_GuysQuesId` ='1' AND `AnswerEva_IdPeriod` ='43' AND `AnswerEva_QuesEvaId` = $QuesEvaId;";
+        $query3 = "SELECT `AnswerEva_Id`, `AnswerEva_IdRolEvaluator`, `AnswerEva_UserNameEvaluator`, `AnswerEva_IdRolEvaluated`, `AnswerEva_UserNameEvaluated`, `AnswerEva_IdPeriod`, `AnswerEva_IdCourse`, `AnswerEva_CourseName`, `AnswerEva_GuysQuesId`, `AnswerEva_QualifyNum` FROM `sistema-escolar`.`EvaSys_AnswerEva` WHERE `AnswerEva_UserNameEvaluated` = '$UserNameEvaluated' AND `AnswerEva_UserNameEvaluator` = '$UserNameEvaluator' AND `AnswerEva_GuysQuesId` ='1' AND `AnswerEva_IdPeriod` ='44' AND `AnswerEva_QuesEvaId` = $QuesEvaId;";
         $result3 = $pdo_eva->query($query3);
 
         while ($row3 = $result3->fetch(PDO::FETCH_ASSOC)) {

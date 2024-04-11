@@ -4,7 +4,7 @@ require_once '../../../includes/conexion.php';
 
 $variableRecibida = json_decode(file_get_contents('php://input'), true);
 $IdCategoriQues = $variableRecibida['questionId'];
-$IdPeriod = '43';
+$IdPeriod = '44';
 $UserNameEvaluator = $_SESSION['User_UserName'];
 
 

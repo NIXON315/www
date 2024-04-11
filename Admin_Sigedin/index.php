@@ -21,7 +21,7 @@ $query_eva->execute();
 $consulta_eva = $query_eva->fetchAll(PDO::FETCH_ASSOC);
 $_SESSION['countusersEvadoc']=count($consulta_eva);
 
-$sql_Study = 'SELECT ide_estudiante FROM col_matricula WHERE cod_colegio_periodo IN(195,196) AND cod_estadomatricula = "3" GROUP BY ide_estudiante;';
+$sql_Study = 'SELECT ide_estudiante FROM col_matricula WHERE cod_colegio_periodo IN(197,198) AND cod_estadomatricula = "3" GROUP BY ide_estudiante;';
 $query_sigeiesStudy = $pdo_sigeies->prepare($sql_Study);
 $query_sigeiesStudy->execute();
 

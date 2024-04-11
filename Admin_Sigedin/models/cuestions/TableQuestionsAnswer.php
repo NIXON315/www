@@ -4,7 +4,7 @@ require_once '../../../includes/conexion.php';
 
 $variableRecibida = json_decode(file_get_contents('php://input'), true);
 $questionId = $variableRecibida['questionId'];
-$IdPeriod = '43';
+$IdPeriod = '44';
 $UserNameEvaluator = '1000105388';
 $AnswerEva_Question = $questionId;
 $sql = 'SELECT * FROM EvaSys_AnswerEva WHERE AnswerEva_UserNameEvaluator = :UserNameEvaluator AND AnswerEva_QuestionId = :AnswerEva_Question AND AnswerEva_IdPeriod = :IdPeriod';
