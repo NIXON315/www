@@ -19,6 +19,7 @@
     $db_sigeies   = 'sigedin_ies';
     $port_sigeies = '3306';
 
+    
 try {
     $pdo = new PDO('mysql:host='.$host.';port='.$port.';dbname='.$db.';charset=utf8', $user, $pass, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
