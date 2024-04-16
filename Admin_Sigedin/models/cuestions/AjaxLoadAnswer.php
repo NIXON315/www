@@ -152,7 +152,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 break;
             
             case 4:
-                $sqlViewsEva = 'SELECT User_UserName, User_Name FROM EvaSys_Users WHERE User_IdRole = ?';
+                $sqlViewsEva = 'SELECT User_UserName, User_Name FROM EvaSys_Users WHERE User_IdRole = ? AND User_StatusId = "1"';
                 $queryViewsEva = $pdo_eva->prepare($sqlViewsEva);
                 $queryViewsEva->execute([$idQuesEvaidRolEvaluator]);
                 $consultaViewsEva = $queryViewsEva->fetchAll(PDO::FETCH_ASSOC);
@@ -270,7 +270,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 break;
             
             case 5:
-                $sqlViewsEva = 'SELECT User_UserName, User_Name FROM EvaSys_Users WHERE User_IdRole = ?';
+                $sqlViewsEva = 'SELECT User_UserName, User_Name FROM EvaSys_Users WHERE User_IdRole = ? AND User_StatusId = "1"';
                 $queryViewsEva = $pdo_eva->prepare($sqlViewsEva);
                 $queryViewsEva->execute([$idQuesEvaidRolEvaluator]);
                 $consultaViewsEva = $queryViewsEva->fetchAll(PDO::FETCH_ASSOC);
@@ -388,7 +388,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 break;
             
             case 7:
-                $sqlViewsEva = 'SELECT User_UserName, User_Name FROM EvaSys_Users WHERE User_IdRole = ?';
+                $sqlViewsEva = 'SELECT User_UserName, User_Name FROM EvaSys_Users WHERE User_IdRole = ? AND User_StatusId = "1"';
                 $queryViewsEva = $pdo_eva->prepare($sqlViewsEva);
                 $queryViewsEva->execute([$idQuesEvaidRolEvaluator]);
                 $consultaViewsEva = $queryViewsEva->fetchAll(PDO::FETCH_ASSOC);
