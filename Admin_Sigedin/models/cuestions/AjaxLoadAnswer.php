@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         switch ($idQuesEvaidRolEvaluator) {
             case 1:
-                $sqlViewsEva = 'SELECT * FROM VISTA_EVADOCENTE ORDER BY ID_ESTUDIANTE';
+                $sqlViewsEva = 'SELECT * FROM VISTA_EVADOCENTE ORDER BY ID_ESTUDIANTE DESC';
                 $queryViewsEva = $pdo_sigeies->prepare($sqlViewsEva);
                 $queryViewsEva->execute();
                 $consultaViewsEva = $queryViewsEva->fetchAll(PDO::FETCH_ASSOC);
