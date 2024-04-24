@@ -24,7 +24,7 @@ if (!empty($_POST)){
     $stmt_verificar->execute();
     $resultado_verificar = $stmt_verificar->fetch(PDO::FETCH_ASSOC);
 
-    /*if ($resultado_verificar['Total'] > 0) {
+    if ($resultado_verificar['Total'] > 0) {
         // El usuario ya existe, devuelve una respuesta indicando el error
         $query_eva = "SELECT User_IdRole, User_Password FROM EvaSys_Users WHERE User_UserName = :UserName";
         $stmt_eva = $pdo_eva->prepare($query_eva);
@@ -72,7 +72,7 @@ if (!empty($_POST)){
             $response = ['rol' => '', 'redireccion'=> '', 'status' => '' ];
         }
 
-    } else {*/
+    } else {
         if ($stmt->rowCount() > 0) {
             // El usuario existe en la base de datos
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -133,7 +133,7 @@ if (!empty($_POST)){
             // El usuario no existe en la base de datos
             $response = ['rol' => '', 'redireccion'=> '', 'status' => '' ];
         }
-    /*}*/
+    }
 
 
    

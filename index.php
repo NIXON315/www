@@ -74,7 +74,7 @@
     // Puedes personalizar el mensaje de la ventana emergente como desees.
     Swal.fire({
       title: '¡Bienvenido!',
-      text: 'Para ingresar al sistema de evaluación Docente es necesario que ingresen su número de identificación como usuario y la contraseña que utilizan para ingresar a SIGEDIN, se recomineda realizar la evaluacion docente desde un computador',
+      text: 'Para ingresar al sistema de evaluación Docente es necesario que ingresen su número de identificación como usuario y la contraseña, se recomineda realizar la evaluacion docente desde un computador',
       icon: 'success', // Puedes usar 'success', 'info', 'warning', 'error', etc.
       confirmButtonText: 'OK'
     });
